@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="GrabMarket.Views.ManagerPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GrabMarket.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="880" Name="ManagerWindow">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="ProductTemp">
+            <StackPanel>
+                <Image Height="100" Width="100" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding ImageUrl}"></Image>
+                <Label Content="{Binding Name}"></Label>
+                <Label Content="{Binding Code}"></Label>
+                <DockPanel>
+                    <Label>1</Label>
+                    <Label Content="{Binding Unit}"></Label>
+                    <Label Content="{Binding Price}"></Label>
+                    <Label>AZN</Label>
+                </DockPanel>
+                <Button>Edit</Button>
+                <Button CommandParameter="{Binding}" Command="{Binding DataContext.Delete,ElementName=ManagerWindow}">Delete</Button>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <DockPanel>
+                <Button Margin="0,0,200,0" Command="{Binding ToMenu}">Back</Button>
+            </DockPanel>
+
+            <DockPanel Margin="0,30,0,0">
+                <Label >Name:</Label>
+                <TextBox Text="{Binding CurrentProduct.Name}"></TextBox>
+            </DockPanel>
+
+            <DockPanel Margin="0,30,0,0">
+                <Label>Type:</Label>
+                <ComboBox Text="{Binding CurrentProduct.Type}">
+                    <ComboBoxItem>Fruits</ComboBoxItem>
+                    <ComboBoxItem>Vegetables</ComboBoxItem>
+                    <ComboBoxItem>Meat</ComboBoxItem>
+                    <ComboBoxItem>Snacks</ComboBoxItem>
+                    <ComboBoxItem>Garnish</ComboBoxItem>
+                    <ComboBoxItem>Sweets</ComboBoxItem>
+                    <ComboBoxItem>Sea</ComboBoxItem>
+                    <ComboBoxItem>Drinks</ComboBoxItem>
+                    <ComboBoxItem>Other</ComboBoxItem>
+                </ComboBox>
+            </DockPanel>
+
+            <DockPanel Margin="0,30,0,0">
+                <Label>Code:</Label>
+                <Button Command="{Binding GenerateCode}">Generate</Button>
+                <TextBox IsEnabled="False" Text="{Binding NewCode}"></TextBox>
+            </DockPanel>
+
+            <DockPanel Margin="0,30,0,0">
+                <Label>Unit:</Label>
+                <ComboBox Text="{Binding CurrentProduct.Unit}">
+                    <ComboBoxItem>Piece</ComboBoxItem>
+                    <ComboBoxItem>Kg</ComboBoxItem>
+                    <ComboBoxItem>L</ComboBoxItem>
+                </ComboBox>
+            </DockPanel>
+
+            <DockPanel Margin="0,30,0,0">
+                <Label>Price:</Label>
+                <TextBox Text="{Binding CurrentProduct.Price}"></TextBox>
+            </DockPanel>
+
+            <DockPanel Margin="0,30,0,0">
+                <Label>Image Url:</Label>
+                <TextBox Text="{Binding CurrentProduct.ImageUrl}"></TextBox>
+            </DockPanel>
+
+            <DockPanel Margin="0,30,0,0">
+                <Button Width="129" Command="{Binding Add}">Add</Button>
+                <Button Command="{Binding SaveData}">Save</Button>
+            </DockPanel>
+
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0">
+                <Button Width="53">All</Button>
+                <Button Width="60">Fruits</Button>
+                <Button Width="60">Vegetables</Button>
+                <Button Width="60">Meat</Button>
+                <Button Width="60">Snacks</Button>
+                <Button Width="60">Garnish</Button>
+                <Button Width="60">Sweets</Button>
+                <Button Width="60">Sea</Button>
+                <Button Width="60">Drinks</Button>
+                <Button Width="53">Other</Button>
+            </DockPanel>
+
+            <DockPanel Grid.Row="1">
+                <ListBox ItemsSource="{Binding ManagerProducts}" ItemTemplate="{StaticResource ProductTemp}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" IsItemsHost="True"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </DockPanel>
+
+        </Grid>
+
+    </Grid>
+    
+    
+
+</UserControl>

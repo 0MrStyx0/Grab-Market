@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="GrabMarket.Views.CashierPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GrabMarket.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="880" Name="CashierWindow">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ProductTemp">
+            <StackPanel>
+                <Image Height="100" Width="100" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding ImageUrl}"></Image>
+                <Label Content="{Binding Name}"></Label>
+                <Label Content="{Binding Code}"></Label>
+                <DockPanel>
+                    <Label>1</Label>
+                    <Label Content="{Binding Unit}"></Label>
+                    <Label Content="{Binding Price}"></Label>
+                    <Label>AZN</Label>
+                </DockPanel>
+                <Button CommandParameter="{Binding}" Command="{Binding DataContext.Add,ElementName=CashierWindow}">Add</Button>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="BasketTemp">
+            <StackPanel>
+                <Label Content="{Binding Name}"></Label>
+                <Label Content="{Binding Count}"></Label>
+                <Button CommandParameter="{Binding}" Command="{Binding DataContext.Delete,ElementName=CashierWindow}">Delete</Button>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="15*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Command="{Binding ToMenu}" Margin="0,0,203,0">Back</Button>
+            <Button Grid.Row="3" Command="{Binding PunchCheck}">PunchCheck</Button>
+            
+            <DockPanel Grid.Row="2">
+                <Label FontSize="13">Total Amount:</Label>
+                <Label FontSize="13" Content="{Binding TotalAmount}"></Label>
+                <Label FontSize="13">AZN</Label>
+            </DockPanel>
+            
+            <DockPanel Grid.Row="1">
+                <ListBox ItemsSource="{Binding Basket}" ItemTemplate="{StaticResource BasketTemp}"></ListBox>
+
+            </DockPanel>
+        </Grid>
+
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0">
+                <Button Width="53">All</Button>
+                <Button Width="60">Fruits</Button>
+                <Button Width="60">Vegetables</Button>
+                <Button Width="60">Meat</Button>
+                <Button Width="60">Snacks</Button>
+                <Button Width="60">Garnish</Button>
+                <Button Width="60">Sweets</Button>
+                <Button Width="60">Sea</Button>
+                <Button Width="60">Drinks</Button>
+                <Button Width="53">Other</Button>
+            </DockPanel>
+
+            <DockPanel Grid.Row="1">
+                <ListBox ItemsSource="{Binding CashierProducts}" ItemTemplate="{StaticResource ProductTemp}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" IsItemsHost="True"></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </DockPanel>
+
+        </Grid>
+
+    </Grid>
+</UserControl>
+
+
