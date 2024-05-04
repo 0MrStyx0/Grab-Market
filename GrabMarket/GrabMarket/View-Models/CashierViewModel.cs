@@ -111,17 +111,25 @@ namespace GrabMarket.View_Models
                 return punchCheck ?? new RelayCommand(
                     () =>
                     {
-                        check.Basket.Add(Basket);
-                        check.TotalAmount = TotalAmount;
-                        checks.Add(check);
-                        using(FileStream fs=new FileStream("Checks.json", FileMode.OpenOrCreate))
+                        try
                         {
-                            JsonSerializer.Serialize<List<Check>>(fs, checks);
-                            MessageBox.Show("Punching", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                            if (Basket.Count == 0) throw new Exception("Empty Basket!");
+                            check.Basket.Add(Basket);
+                            check.TotalAmount = TotalAmount;
+                            checks.Add(check);
+                            using (FileStream fs = new FileStream("Checks.json", FileMode.OpenOrCreate))
+                            {
+                                JsonSerializer.Serialize<List<Check>>(fs, checks);
+                                MessageBox.Show("Punching", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            Basket = new ObservableCollection<BasketElementViewModel>();
+                            check = new Check();
+                            TotalAmount = "";
                         }
-                        Basket = new ObservableCollection<BasketElementViewModel>();
-                        check = new Check();
-                        TotalAmount = "";
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     });
             }
         }
