@@ -5,18 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GrabMarket.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="880" Name="CashierWindow">
+             d:DesignHeight="460" d:DesignWidth="880" Name="CashierWindow">
     <UserControl.Resources>
         <DataTemplate x:Key="ProductTemp">
             <StackPanel>
                 <Image Height="100" Width="100" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding ImageUrl}"></Image>
-                <Label Content="{Binding Name}"></Label>
-                <Label Content="{Binding Code}"></Label>
+                <Label FontWeight="UltraBold" Content="{Binding Name}"></Label>
+                <Label FontWeight="UltraBold" Content="{Binding Code}"></Label>
                 <DockPanel>
-                    <Label>1</Label>
-                    <Label Content="{Binding Unit}"></Label>
-                    <Label Content="{Binding Price}"></Label>
-                    <Label>AZN</Label>
+                    <Label FontWeight="UltraBold">1</Label>
+                    <Label FontWeight="UltraBold" Content="{Binding Unit}"></Label>
+                    <Label FontWeight="UltraBold" Content="{Binding Price}"></Label>
+                    <Label FontWeight="UltraBold">AZN</Label>
                 </DockPanel>
                 <Button CommandParameter="{Binding}" Command="{Binding DataContext.Add,ElementName=CashierWindow}">Add</Button>
             </StackPanel>
@@ -24,9 +24,9 @@
 
         <DataTemplate x:Key="BasketTemp">
             <StackPanel>
-                <Label Content="{Binding Name}"></Label>
-                <Label Content="{Binding Count}"></Label>
-                <Button CommandParameter="{Binding}" Command="{Binding DataContext.Delete,ElementName=CashierWindow}">Delete</Button>
+                <Label FontWeight="UltraBold" Content="{Binding Name}"></Label>
+                <Label FontWeight="UltraBold" Content="{Binding Count}"></Label>
+                <Button FontWeight="UltraBold" CommandParameter="{Binding}" Command="{Binding DataContext.Delete,ElementName=CashierWindow}">Delete</Button>
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
@@ -45,17 +45,19 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="0" Command="{Binding ToMenu}" Margin="0,0,203,0">Back</Button>
-            <Button Grid.Row="3" Command="{Binding PunchCheck}">PunchCheck</Button>
+            <Button BorderBrush="Transparent" Background="Transparent" Grid.Row="0" Command="{Binding ToMenu}" Margin="0,0,203,0">
+                <Image Source="https://c0.klipartz.com/pngpicture/673/795/gratis-png-flecha-azul-ilustracion-flecha-azul-flecha-izquierda.png"></Image>
+            </Button>
+            <Button FontSize="15" Background="Blue" FontWeight="UltraBold" Foreground="Black" Grid.Row="3" Command="{Binding PunchCheck}">PunchCheck</Button>
             
             <DockPanel Grid.Row="2">
-                <Label FontSize="13">Total Amount:</Label>
-                <Label FontSize="13" Content="{Binding TotalAmount}"></Label>
-                <Label FontSize="13">AZN</Label>
+                <Label  FontWeight="UltraBold" FontSize="13">Total Amount:</Label>
+                <Label  FontWeight="UltraBold" FontSize="13" Content="{Binding TotalAmount}"></Label>
+                <Label  FontWeight="UltraBold" FontSize="13">AZN</Label>
             </DockPanel>
             
             <DockPanel Grid.Row="1">
-                <ListBox ItemsSource="{Binding Basket}" ItemTemplate="{StaticResource BasketTemp}"></ListBox>
+                <ListBox Background="Transparent" ItemsSource="{Binding Basket}" ItemTemplate="{StaticResource BasketTemp}"></ListBox>
 
             </DockPanel>
         </Grid>
@@ -81,7 +83,7 @@
             </DockPanel>
 
             <DockPanel Grid.Row="1">
-                <ListBox ItemsSource="{Binding CashierProducts}" ItemTemplate="{StaticResource ProductTemp}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox Background="Transparent" ItemsSource="{Binding CashierProducts}" ItemTemplate="{StaticResource ProductTemp}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal" IsItemsHost="True"></WrapPanel>

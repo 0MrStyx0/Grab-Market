@@ -117,10 +117,11 @@ namespace GrabMarket.View_Models
                 return saveData ?? new RelayCommand(
                     () =>
                     {
-                        using(FileStream fs=new FileStream("Products.json", FileMode.Open))
+                        using(FileStream fs=new FileStream("Products.json", FileMode.OpenOrCreate))
                         {
-                            JsonSerializer.Serialize<ObservableCollection<Product>>(fs, managerProducts);
+                            JsonSerializer.Serialize(fs, ManagerProducts);
                             MessageBox.Show("Data save", "DATA WAS SAVED!", MessageBoxButton.OK, MessageBoxImage.Information);
+                            fs.Close();
                         }
                     });
             }

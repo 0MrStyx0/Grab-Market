@@ -27,7 +27,7 @@ namespace GrabMarket
                 }
                 else
                 {
-                    using (FileStream fs = new FileStream("Products.json", FileMode.Open, FileAccess.Read))
+                    using (FileStream fs = new FileStream("Products.json", FileMode.OpenOrCreate))
                     {
                         storage.Products = JsonSerializer.Deserialize<ObservableCollection<Product>>(fs);
                         fs.Close();

@@ -5,19 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GrabMarket.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="880" Name="ManagerWindow">
+             d:DesignHeight="460" d:DesignWidth="880" Name="ManagerWindow">
 
     <UserControl.Resources>
         <DataTemplate x:Key="ProductTemp">
             <StackPanel>
                 <Image Height="100" Width="100" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding ImageUrl}"></Image>
-                <Label Content="{Binding Name}"></Label>
-                <Label Content="{Binding Code}"></Label>
+                <Label FontSize="12" FontWeight="UltraBold" Foreground="Black" Content="{Binding Name}"></Label>
+                <Label FontSize="12" FontWeight="UltraBold" Foreground="Black" Content="{Binding Code}"></Label>
                 <DockPanel>
-                    <Label>1</Label>
-                    <Label Content="{Binding Unit}"></Label>
-                    <Label Content="{Binding Price}"></Label>
-                    <Label>AZN</Label>
+                    <Label FontSize="12" FontWeight="UltraBold" Foreground="Black">1</Label>
+                    <Label FontSize="12" FontWeight="UltraBold" Foreground="Black" Content="{Binding Unit}"></Label>
+                    <Label FontSize="12" FontWeight="UltraBold" Foreground="Black" Content="{Binding Price}"></Label>
+                    <Label FontSize="12" FontWeight="UltraBold" Foreground="Black">AZN</Label>
                 </DockPanel>
                 <Button>Edit</Button>
                 <Button CommandParameter="{Binding}" Command="{Binding DataContext.Delete,ElementName=ManagerWindow}">Delete</Button>
@@ -33,16 +33,18 @@
 
         <StackPanel Grid.Column="0">
             <DockPanel>
-                <Button Margin="0,0,200,0" Command="{Binding ToMenu}">Back</Button>
+                <Button Background="Transparent" BorderBrush="Transparent" Margin="0,0,200,0" Command="{Binding ToMenu}">
+                    <Image Width="50" Source="https://c0.klipartz.com/pngpicture/673/795/gratis-png-flecha-azul-ilustracion-flecha-azul-flecha-izquierda.png"></Image>
+                </Button>
             </DockPanel>
 
             <DockPanel Margin="0,30,0,0">
-                <Label >Name:</Label>
+                <Label Foreground="Blue">Name:</Label>
                 <TextBox Text="{Binding CurrentProduct.Name}"></TextBox>
             </DockPanel>
 
             <DockPanel Margin="0,30,0,0">
-                <Label>Type:</Label>
+                <Label Foreground="Blue">Type:</Label>
                 <ComboBox Text="{Binding CurrentProduct.Type}">
                     <ComboBoxItem>Fruits</ComboBoxItem>
                     <ComboBoxItem>Vegetables</ComboBoxItem>
@@ -57,13 +59,15 @@
             </DockPanel>
 
             <DockPanel Margin="0,30,0,0">
-                <Label>Code:</Label>
-                <Button Command="{Binding GenerateCode}">Generate</Button>
+                <Label Foreground="Blue">Code:</Label>
+                <Button Command="{Binding GenerateCode}">
+                    <Image Height="25" Source="https://img.freepik.com/premium-vector/dark-blue-colored-metal-chrome-web-icon-arrow-refresh_153454-1495.jpg"></Image>
+                </Button>
                 <TextBox IsEnabled="False" Text="{Binding NewCode}"></TextBox>
             </DockPanel>
 
             <DockPanel Margin="0,30,0,0">
-                <Label>Unit:</Label>
+                <Label Foreground="Blue">Unit:</Label>
                 <ComboBox Text="{Binding CurrentProduct.Unit}">
                     <ComboBoxItem>Piece</ComboBoxItem>
                     <ComboBoxItem>Kg</ComboBoxItem>
@@ -72,18 +76,18 @@
             </DockPanel>
 
             <DockPanel Margin="0,30,0,0">
-                <Label>Price:</Label>
+                <Label Foreground="Blue">Price:</Label>
                 <TextBox Text="{Binding CurrentProduct.Price}"></TextBox>
             </DockPanel>
 
             <DockPanel Margin="0,30,0,0">
-                <Label>Image Url:</Label>
+                <Label Foreground="Blue">Image Url:</Label>
                 <TextBox Text="{Binding CurrentProduct.ImageUrl}"></TextBox>
             </DockPanel>
 
             <DockPanel Margin="0,30,0,0">
-                <Button Width="129" Command="{Binding Add}">Add</Button>
-                <Button Command="{Binding SaveData}">Save</Button>
+                <Button FontSize="15" FontWeight="UltraBold" Foreground="Black" Background="Blue" Width="129" Command="{Binding Add}">Add</Button>
+                <Button FontSize="15" FontWeight="UltraBold" Foreground="Black" Background="Blue" Command="{Binding SaveData}">Save</Button>
             </DockPanel>
 
         </StackPanel>
@@ -108,7 +112,7 @@
             </DockPanel>
 
             <DockPanel Grid.Row="1">
-                <ListBox ItemsSource="{Binding ManagerProducts}" ItemTemplate="{StaticResource ProductTemp}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox Background="Transparent" ItemsSource="{Binding ManagerProducts}" ItemTemplate="{StaticResource ProductTemp}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal" IsItemsHost="True"></WrapPanel>

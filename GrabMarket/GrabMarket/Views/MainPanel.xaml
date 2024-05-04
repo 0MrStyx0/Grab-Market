@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GrabMarket.Views"
         mc:Ignorable="d"
-        Title="GrabMarket" Height="450" Width="880"
+        Title="GrabMarket" Height="460" Width="880"
         Icon="pack://application:,,,/Resources/favicon.ico">
 
+    <Window.Background>
+        <ImageBrush ImageSource="https://png.pngtree.com/background/20231031/original/pngtree-3d-render-of-a-supermarket-delivery-app-for-online-shopping-picture-image_5813265.jpg"></ImageBrush>
+    </Window.Background>
+    
     <Window.Resources>
         <ResourceDictionary Source="..\Resources\DataTemplates.xaml"/>
     </Window.Resources>
