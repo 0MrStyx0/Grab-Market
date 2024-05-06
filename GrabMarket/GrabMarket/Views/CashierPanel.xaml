@@ -26,6 +26,10 @@
             <StackPanel>
                 <Label FontWeight="UltraBold" Content="{Binding Name}"></Label>
                 <Label FontWeight="UltraBold" Content="{Binding Count}"></Label>
+                <DockPanel>
+                    <Button CommandParameter="{Binding}" Command="{Binding DataContext.Plus,ElementName=CashierWindow}" FontWeight="UltraBold" FontSize="20" Width="25" Background="Transparent" BorderBrush="Transparent">+</Button>
+                    <Button CommandParameter="{Binding}" Command="{Binding DataContext.Minus,ElementName=CashierWindow}" FontWeight="UltraBold" FontSize="20" Background="Transparent" BorderBrush="Transparent">-</Button>
+                </DockPanel>
                 <Button FontWeight="UltraBold" CommandParameter="{Binding}" Command="{Binding DataContext.Delete,ElementName=CashierWindow}">Delete</Button>
             </StackPanel>
         </DataTemplate>
@@ -70,20 +74,20 @@
             </Grid.RowDefinitions>
 
             <DockPanel Grid.Row="0">
-                <Button Width="53">All</Button>
-                <Button Width="60">Fruits</Button>
-                <Button Width="60">Vegetables</Button>
-                <Button Width="60">Meat</Button>
-                <Button Width="60">Snacks</Button>
-                <Button Width="60">Garnish</Button>
-                <Button Width="60">Sweets</Button>
-                <Button Width="60">Sea</Button>
-                <Button Width="60">Drinks</Button>
-                <Button Width="53">Other</Button>
+                <Button Width="53" Command="{Binding ShowFilter}" CommandParameter="All">All</Button>
+                <Button Width="60" Command="{Binding ShowFilter}" CommandParameter="Fruits">Fruits</Button>
+                <Button Width="60" Command="{Binding ShowFilter}" CommandParameter="Vegetables">Vegetables</Button>
+                <Button Width="60" Command="{Binding ShowFilter}" CommandParameter="Meat">Meat</Button>
+                <Button Width="60" Command="{Binding ShowFilter}" CommandParameter="Snacks">Snacks</Button>
+                <Button Width="60" Command="{Binding ShowFilter}" CommandParameter="Garnish">Garnish</Button>
+                <Button Width="60" Command="{Binding ShowFilter}" CommandParameter="Sweets">Sweets</Button>
+                <Button Width="60" Command="{Binding ShowFilter}" CommandParameter="Sea">Sea</Button>
+                <Button Width="60" Command="{Binding ShowFilter}" CommandParameter="Drinks">Drinks</Button>
+                <Button Width="53" Command="{Binding ShowFilter}" CommandParameter="Other">Other</Button>
             </DockPanel>
 
             <DockPanel Grid.Row="1">
-                <ListBox Background="Transparent" ItemsSource="{Binding CashierProducts}" ItemTemplate="{StaticResource ProductTemp}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox Background="Transparent" ItemsSource="{Binding VisibleProducts}" ItemTemplate="{StaticResource ProductTemp}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal" IsItemsHost="True"></WrapPanel>

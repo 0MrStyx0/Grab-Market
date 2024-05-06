@@ -9,7 +9,7 @@
         Icon="pack://application:,,,/Resources/favicon.ico">
 
     <Window.Background>
-        <ImageBrush ImageSource="https://png.pngtree.com/background/20231031/original/pngtree-3d-render-of-a-supermarket-delivery-app-for-online-shopping-picture-image_5813265.jpg"></ImageBrush>
+        <ImageBrush ImageSource="https://img.freepik.com/free-vector/gradient-liquid-abstract-background_23-2148939140.jpg"></ImageBrush>
     </Window.Background>
     
     <Window.Resources>
@@ -17,5 +17,5 @@
     </Window.Resources>
 
     <UserControl Content="{Binding CurrentPanel}"></UserControl>
-
+    <!--<ImageBrush ImageSource="https://png.pngtree.com/background/20231031/original/pngtree-3d-render-of-a-supermarket-delivery-app-for-online-shopping-picture-image_5813265.jpg"></ImageBrush>-->
 </Window>

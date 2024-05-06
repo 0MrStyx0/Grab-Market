@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GrabMarket.Models;
 using GrabMarket.Resources;
 using GrabMarket.Services;
 using GrabMarket.View_Models;
@@ -18,12 +19,12 @@ namespace GrabMarket
         private ManagerViewModel managerViewModel { get; set; }
         private INavigatable navigation { get; set; }
 
-        public ViewModelLocator(DataStore storage)
+        public ViewModelLocator(DataStore storage, List<Check> Checks)
         {
             navigation = new Navigation();
             mainPanelViewModel = new MainPanelViewModel();
             menuViewModel = new MenuViewModel(navigation);
-            cashierViewModel = new CashierViewModel(navigation, storage);
+            cashierViewModel = new CashierViewModel(navigation, storage, Checks);
             managerViewModel = new ManagerViewModel(navigation,storage);
 
             navigation.Register("Menu", menuViewModel);

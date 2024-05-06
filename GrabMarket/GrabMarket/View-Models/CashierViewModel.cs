@@ -25,6 +25,13 @@ namespace GrabMarket.View_Models
             set { Set<ObservableCollection<Product>>(ref cashierProducts, value); }
         }
 
+        private ObservableCollection<Product> visibleProducts;
+        public ObservableCollection<Product> VisibleProducts
+        {
+            get { return visibleProducts; }
+            set { Set<ObservableCollection<Product>>(ref visibleProducts, value); }
+        }
+
         private ObservableCollection<BasketElementViewModel> basket;
         public ObservableCollection<BasketElementViewModel> Basket
         { get { return basket; } 
@@ -35,13 +42,14 @@ namespace GrabMarket.View_Models
         private List<Check> checks;
 
         private INavigatable navigation { get; set; }
-        public CashierViewModel(INavigatable navigation, DataStore storage)
+        public CashierViewModel(INavigatable navigation, DataStore storage, List<Check> Checks)
         {
             this.navigation = navigation;
             CashierProducts = storage.Products;
+            VisibleProducts = CashierProducts;
             Basket = new ObservableCollection<BasketElementViewModel>();
             check = new Check();
-            checks = new List<Check>();
+            checks = Checks;
         }
 
         private string totalAmount;
@@ -50,12 +58,33 @@ namespace GrabMarket.View_Models
           set { Set(ref totalAmount, value); }
         }
 
+        private RelayCommand<string> showFilter;
+        public RelayCommand<string> ShowFilter
+        {
+            get
+            {
+                return showFilter ?? new RelayCommand<string>(
+                    (param) =>
+                    {
+                        if(param == "All")
+                        {
+                            VisibleProducts = CashierProducts;
+                        }
+                        else
+                        {
+                            var filtered = CashierProducts.Where(x => x.Type == param).ToList();
+                            VisibleProducts = new ObservableCollection<Product>(filtered);
+                        }
+                    });
+            }
+        }
+
         private RelayCommand toMenu;
         public RelayCommand ToMenu
         {
             get
             {
-                return toMenu ?? new RelayCommand(() => { navigation.Navigate("Menu"); });
+                return toMenu ?? new RelayCommand(() => { navigation.Navigate("Menu"); TotalAmount = ""; Basket = new ObservableCollection<BasketElementViewModel>(); });
             }
         }
 
@@ -68,13 +97,8 @@ namespace GrabMarket.View_Models
                     (param) =>
                     {
                         var selectedItem= param as Product;
-                        var result=Basket.FirstOrDefault(x=>x.Code == selectedItem.Code);
-                        if(result != null)
-                        {
-                            result.Count++;
-                            result.Price = result.Price + selectedItem.Price;
-                        }
-                        else
+                        var result = Basket.FirstOrDefault(x => x.Code == selectedItem.Code);
+                        if(result == null)
                         {
                             Basket.Add(new BasketElementViewModel
                             {
@@ -83,6 +107,10 @@ namespace GrabMarket.View_Models
                                 Count = 1,
                                 Name = selectedItem.Name
                             });
+                        }
+                        else
+                        {
+                            MessageBox.Show("Product in basket!","Info",MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                         TotalAmount = Basket.Sum(x => x.Price).ToString();
                     });
@@ -103,6 +131,45 @@ namespace GrabMarket.View_Models
             }
         }
 
+        private RelayCommand<BasketElementViewModel> plus;
+        public RelayCommand<BasketElementViewModel> Plus
+        {
+            get
+            {
+                return plus ?? new RelayCommand<BasketElementViewModel>(
+                    (param) =>
+                    {
+                        param.Count++;
+                        var result = CashierProducts.FirstOrDefault(x => x.Code == param.Code);
+                        param.Price += result.Price;
+                        TotalAmount = Math.Round((double)Basket.Sum(x => x.Price), 2).ToString();
+                    });
+            }
+        }
+
+        private RelayCommand<BasketElementViewModel> minus;
+        public RelayCommand<BasketElementViewModel> Minus
+        {
+            get
+            {
+                return minus ?? new RelayCommand<BasketElementViewModel>(
+                    (param) =>
+                    {
+                        param.Count--;
+                        if(param.Count == 0)
+                        {
+                            Basket.Remove(param);
+                        }
+                        else
+                        {
+                            var result = CashierProducts.FirstOrDefault(x => x.Code == param.Code);
+                            param.Price -= result.Price;
+                        }
+                        TotalAmount = Math.Round((double)Basket.Sum(x => x.Price), 2).ToString();
+                    });
+            }
+        }
+
         private RelayCommand punchCheck;
         public RelayCommand PunchCheck
         {
@@ -116,11 +183,25 @@ namespace GrabMarket.View_Models
                             if (Basket.Count == 0) throw new Exception("Empty Basket!");
                             check.Basket.Add(Basket);
                             check.TotalAmount = TotalAmount;
+                            check.Date = DateTime.Now.ToString();
                             checks.Add(check);
-                            using (FileStream fs = new FileStream("Checks.json", FileMode.OpenOrCreate))
+
+                            string Check = "        GRAB MARKET\n" +
+                                      "-------------------------------\n" +
+                                      "Name:\t\tPrice:\n\n";
+                            for(int i = 0; i < Basket.Count; i++)
+                            {
+                                Check += Basket[i].Name + "\t       ";
+                                Check += Basket[i].Count + "\t    ";
+                                Check += Math.Round((double)Basket[i].Price,2) + "\n\n";
+                            }
+                            Check += "-------------------------------\n" +
+                                     $"TOTAL AMOUNT:      {check.TotalAmount}\n\n" +
+                                     $"{check.Date}";
+                            using (FileStream fs = new FileStream("Checks.json", FileMode.Create))
                             {
                                 JsonSerializer.Serialize<List<Check>>(fs, checks);
-                                MessageBox.Show("Punching", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                                MessageBox.Show(Check, "Check", MessageBoxButton.OK, MessageBoxImage.Information);
                             }
                             Basket = new ObservableCollection<BasketElementViewModel>();
                             check = new Check();

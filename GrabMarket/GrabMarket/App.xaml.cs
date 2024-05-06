@@ -18,28 +18,66 @@ namespace GrabMarket
         protected override void OnStartup(StartupEventArgs e)
         {
             DataStore storage = new DataStore();
-            FileInfo file = new FileInfo("Products.json");
-            if (file.Exists)
+            using (FileStream fs = new FileStream("Products.json", FileMode.OpenOrCreate))
             {
-                if (file.Length == 0)
+                if (fs.Length != 0)
                 {
-
-                }
-                else
-                {
-                    using (FileStream fs = new FileStream("Products.json", FileMode.OpenOrCreate))
-                    {
-                        storage.Products = JsonSerializer.Deserialize<ObservableCollection<Product>>(fs);
-                        fs.Close();
-                    }
+                    storage.Products = JsonSerializer.Deserialize<ObservableCollection<Product>>(fs);
+                    fs.Close();
                 }
             }
-            else
+            List<Check> Checks = new List<Check>();
+            using (FileStream fs = new FileStream("Checks.json", FileMode.OpenOrCreate))
             {
-                file.Create();
+                if (fs.Length != 0)
+                {
+                    Checks = JsonSerializer.Deserialize<List<Check>>(fs);
+                    fs.Close();
+                }
             }
+            
+            //FileInfo file = new FileInfo("Products.json");
+            //if (file.Exists)
+            //{
+            //    if (file.Length == 0)
+            //    {
 
-            ViewModelLocator locator = new ViewModelLocator(storage);
+            //    }
+            //    else
+            //    {
+            //        using (FileStream fs = new FileStream("Products.json", FileMode.OpenOrCreate))
+            //        {
+            //            storage.Products = JsonSerializer.Deserialize<ObservableCollection<Product>>(fs);
+            //            fs.Close();
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    file.Create();
+            //}
+
+            //FileInfo fileCheck = new FileInfo("Checks.json");
+            //if (fileCheck.Exists)
+            //{
+            //    if (fileCheck.Length == 0)
+            //    {
+
+            //    }
+            //    else
+            //    {
+            //        using (FileStream fs = new FileStream("Checks.json", FileMode.OpenOrCreate))
+            //        {
+            //            Checks = JsonSerializer.Deserialize<List<Check>>(fs);
+            //            fs.Close();
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    fileCheck.Create();
+            //}
+            ViewModelLocator locator = new ViewModelLocator(storage, Checks);
             MainPanel mainPanel = new MainPanel();
             mainPanel.DataContext = locator.GetMainPanelViewModel();
             mainPanel.ShowDialog();

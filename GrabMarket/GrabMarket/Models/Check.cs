@@ -12,5 +12,6 @@ namespace GrabMarket.Models
     {
        public List<ObservableCollection<BasketElementViewModel>> Basket {  get; set; } = new List<ObservableCollection<BasketElementViewModel>>();
        public string TotalAmount {  get; set; }
+       public string Date {  get; set; }    
     }
 }
