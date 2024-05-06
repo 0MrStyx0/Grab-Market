@@ -1,0 +1,106 @@
+[
+  {
+    "Name": "Doritos Cheese",
+    "Type": "Snacks",
+    "Code": "00e1ad5c-e1b9-4349-8af3-6242aad25dfd",
+    "Unit": "Piece",
+    "Price": 1.5,
+    "ImageUrl": "https://bazarstore.az/cdn/shop/products/30003722_5012df30-3501-41ce-8bf5-e3d7967d85f2.jpg?v=1693304819"
+  },
+  {
+    "Name": "Doritos Green",
+    "Type": "Snacks",
+    "Code": "11f26ddf-9c44-4f95-8eff-6a298aa3a983",
+    "Unit": "Piece",
+    "Price": 2,
+    "ImageUrl": "https://bazarstore.az/cdn/shop/products/30070444_81ea03f8-a774-4952-9e4e-252114d4554e.jpg?v=1693739354"
+  },
+  {
+    "Name": "Doritos Hot",
+    "Type": "Snacks",
+    "Code": "1221e8f0-0a77-426b-a2f9-78ec283b0a17",
+    "Unit": "Piece",
+    "Price": 3.5,
+    "ImageUrl": "https://bazarstore.az/cdn/shop/products/30003724_60a6b02b-a53a-4025-922a-b1974e2e099c.jpg?v=1693743082"
+  },
+  {
+    "Name": "Lays Paprika",
+    "Type": "Snacks",
+    "Code": "09759fe2-15d0-4e4e-a755-627613ad771c",
+    "Unit": "Piece",
+    "Price": 1.4,
+    "ImageUrl": "https://bazarstore.az/cdn/shop/products/30116011_ab6c4ec1-23a3-4072-8174-5a037e2f32f8.jpg?v=1693570838"
+  },
+  {
+    "Name": "Lego Ferrari",
+    "Type": "Other",
+    "Code": "b7085b0f-3fb4-4922-85cb-09bee09fca6e",
+    "Unit": "Piece",
+    "Price": 230,
+    "ImageUrl": "https://www.paddlup.com/media/gzadavki/f40lego.jpg?anchor=center\u0026mode=crop\u0026width=944\u0026height=630\u0026rnd=133215512425400000"
+  },
+  {
+    "Name": "Apples Green",
+    "Type": "Fruits",
+    "Code": "22370f4c-340f-4ccd-9035-c363418d8fe2",
+    "Unit": "Kg",
+    "Price": 3,
+    "ImageUrl": "https://www.my-vb.com/sites/default/files/styles/nos_saveurs_1_1_/public/2019-02/pomme%20verte-630x377.jpg?itok=2M-Wrcf6"
+  },
+  {
+    "Name": "Apples Red",
+    "Type": "Fruits",
+    "Code": "b88136b9-1409-44c8-bfc2-7e463ae999a9",
+    "Unit": "Kg",
+    "Price": 2,
+    "ImageUrl": "https://ychef.files.bbci.co.uk/1280x720/p07v2wjn.jpg"
+  },
+  {
+    "Name": "Potato",
+    "Type": "Vegetables",
+    "Code": "be320d50-7e44-405e-8083-7cacc834eb12",
+    "Unit": "Kg",
+    "Price": 3.5,
+    "ImageUrl": "https://cdn.mos.cms.futurecdn.net/iC7HBvohbJqExqvbKcV3pP-1200-80.jpg"
+  },
+  {
+    "Name": "Cucumber",
+    "Type": "Vegetables",
+    "Code": "44b0c0d1-822b-46e6-bd72-5c940fb6fecd",
+    "Unit": "Kg",
+    "Price": 1.3,
+    "ImageUrl": "https://cdn.apartmenttherapy.info/image/upload/v1708645032/k/Photo/Series/2019-07-snapshot-cooking-cucumber-salad-world-cuisines/Cucumber-Salad_Shaved-cucumber-fennel-salad-olives-feta_015_b37f40-crop.jpg"
+  },
+  {
+    "Name": "Marcan",
+    "Type": "Meat",
+    "Code": "475ca893-a406-4a32-b1dd-2ced4715246f",
+    "Unit": "Piece",
+    "Price": 5,
+    "ImageUrl": "https://bazarstore.az/cdn/shop/products/30107836_e5afc63b-eaa8-45d7-9118-70579300257c.png?v=1693900588"
+  },
+  {
+    "Name": "Kinder Surprise",
+    "Type": "Sweets",
+    "Code": "d6b6c80b-be38-4c00-9384-e63bca9814de",
+    "Unit": "Piece",
+    "Price": 3.4,
+    "ImageUrl": "https://digitalcontent.api.tesco.com/v2/media/ghs/7a5c9dc8-edcd-44cd-a035-de949e5e1c4e/9c96e593-26ea-4aae-9b59-819c200f829f_1360501009.jpeg?h=960\u0026w=960"
+  },
+  {
+    "Name": "Dragon Eggs",
+    "Type": "Sweets",
+    "Code": "70a3e8c3-d466-4c04-ae3b-1767fe2c619d",
+    "Unit": "Piece",
+    "Price": 6.7,
+    "ImageUrl": "https://api.magonline.ru/thumbnail/740x740/15/219/15219.png"
+  },
+  {
+    "Name": "Fusetea Laym-Nan\u0259",
+    "Type": "Drinks",
+    "Code": "a4332191-fcc8-46c9-810c-889dfb80eb7d",
+    "Unit": "Piece",
+    "Price": 1.2,
+    "ImageUrl": "https://bazarstore.az/cdn/shop/products/30188091.png?v=1693286957"
+  }
+]

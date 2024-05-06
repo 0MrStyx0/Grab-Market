@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GrabMarket")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0daaae3d0e98714a3b0a1ae2d215a3712434bfd0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d01101aa1e736a56e3a37a6cf1e2a1a5ac5056e")]
 [assembly: System.Reflection.AssemblyProductAttribute("GrabMarket")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GrabMarket")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -35,48 +35,6 @@ namespace GrabMarket
                     fs.Close();
                 }
             }
-            
-            //FileInfo file = new FileInfo("Products.json");
-            //if (file.Exists)
-            //{
-            //    if (file.Length == 0)
-            //    {
-
-            //    }
-            //    else
-            //    {
-            //        using (FileStream fs = new FileStream("Products.json", FileMode.OpenOrCreate))
-            //        {
-            //            storage.Products = JsonSerializer.Deserialize<ObservableCollection<Product>>(fs);
-            //            fs.Close();
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    file.Create();
-            //}
-
-            //FileInfo fileCheck = new FileInfo("Checks.json");
-            //if (fileCheck.Exists)
-            //{
-            //    if (fileCheck.Length == 0)
-            //    {
-
-            //    }
-            //    else
-            //    {
-            //        using (FileStream fs = new FileStream("Checks.json", FileMode.OpenOrCreate))
-            //        {
-            //            Checks = JsonSerializer.Deserialize<List<Check>>(fs);
-            //            fs.Close();
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    fileCheck.Create();
-            //}
             ViewModelLocator locator = new ViewModelLocator(storage, Checks);
             MainPanel mainPanel = new MainPanel();
             mainPanel.DataContext = locator.GetMainPanelViewModel();

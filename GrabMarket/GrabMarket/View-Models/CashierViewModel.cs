@@ -186,16 +186,16 @@ namespace GrabMarket.View_Models
                             check.Date = DateTime.Now.ToString();
                             checks.Add(check);
 
-                            string Check = "        GRAB MARKET\n" +
-                                      "-------------------------------\n" +
-                                      "Name:\t\tPrice:\n\n";
+                            string Check = "                GRAB MARKET\n" +
+                                      "----------------------------------------------\n" +
+                                      "Name:\t\t                 Price:\n\n";
                             for(int i = 0; i < Basket.Count; i++)
                             {
                                 Check += Basket[i].Name + "\t       ";
                                 Check += Basket[i].Count + "\t    ";
                                 Check += Math.Round((double)Basket[i].Price,2) + "\n\n";
                             }
-                            Check += "-------------------------------\n" +
+                            Check += "----------------------------------------------\n" +
                                      $"TOTAL AMOUNT:      {check.TotalAmount}\n\n" +
                                      $"{check.Date}";
                             using (FileStream fs = new FileStream("Checks.json", FileMode.Create))
